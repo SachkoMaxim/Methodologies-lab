@@ -1,0 +1,21 @@
+{
+    "name": "Methodologies-lab",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified for now\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/SachkoMaxim/Methodologies-lab.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/SachkoMaxim/Methodologies-lab/issues"
+    },
+    "homepage": "https://github.com/SachkoMaxim/Methodologies-lab#readme"
+}
