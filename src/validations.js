@@ -32,7 +32,7 @@ const validateOutputFilePath = (filePath) => {
     if (outputFile && !existsSync(outputFile)) {
         try {
             // Creating the output directory
-            writeFileSync(outputFile, '', 'utf-8');
+            writeFileSync(outputFile + '/.placeholder', '', 'utf-8');
         } catch (error) {
             console.log(`\x1b[31mError:\x1b[0m Unable to create output directory: ${outputFile}.\n${error.message}`);
             // exit code is 500 as for internal server error
