@@ -6,7 +6,7 @@ const TagsMap = {
 
 const preformattedTextOpenedTag = '<pre>\n';
 const preformattedTextClosedTag = '</pre>\n';
-const backticks = '```';
+const backticks = /^```$/;
 const paragraphOpenedTag = '<p>';
 const paragraphClosedTag = '</p>';
 
@@ -39,6 +39,27 @@ const processParagraph = (result, isParagraphOpened, string) => {
     }
 }
 
+const mergeStringesWithCloseParagraph = (markdownText) => {
+    const strings = markdownText.split('\n');
+    const mergedStrings = [];
+    const paragraphCheck = /^<\/p>$/;
+
+    for (let i = 0; i < strings.length; i++) {
+        const nextString = strings[i + 1] ? strings[i + 1].trim() : '';
+        const testString = strings[i + 1];
+
+        if (paragraphCheck.test(testString)) {
+            const newString = strings[i].replace(/[\r\n]/g, '');
+            mergedStrings.push(newString + nextString);
+            i++;  // Skip the next string since it has been merged
+        } else {
+            mergedStrings.push(strings[i]);
+        }
+    }
+
+    return mergedStrings.join('\n');
+}
+
 const convertMarkdownToHTML = (markdownText) => {
     const strings = markdownText.split('\n');
     const result = [];
@@ -46,7 +67,8 @@ const convertMarkdownToHTML = (markdownText) => {
     const isParagraphOpened = [false];
 
     for (const string of strings) {
-        if (string.startsWith(backticks)) {
+        const testString = string.replace(/[\r\n]/g, '');
+        if (backticks.test(testString)) {
             processPreformattedText(result, isPreformattedText);
             continue;
         }
@@ -66,7 +88,10 @@ const convertMarkdownToHTML = (markdownText) => {
         result.push(preformattedTextClosedTag);
     }
 
-    return result.join('');
+    const finalHTML = result.join('');
+    const mergedHTML = mergeStringesWithCloseParagraph(finalHTML);
+  
+    return mergedHTML;
 }
 
 export { convertMarkdownToHTML };
