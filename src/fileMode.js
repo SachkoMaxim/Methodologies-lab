@@ -1,4 +1,6 @@
+import { writeFileSync } from 'fs';
 import { validateInputFilePath, validateOutputFilePath, readMarkdownFile } from './validations.js';
+import { convertMarkdownToHTML } from './markdownConverter.js';
 
 const startFileMode = () => {
     const inputFilePath = process.argv[2];
@@ -8,7 +10,11 @@ const startFileMode = () => {
     validateOutputFilePath(outputFilePath);
 
     const markdownText = readMarkdownFile(inputFilePath);
-    console.log("File mode is not implemented yet");
+
+    const fileText = convertMarkdownToHTML(markdownText);
+    writeFileSync(outputFilePath, fileText, 'utf-8');
+
+    console.log(`HTML successfully written to: ${outputFilePath}`);
 }
 
 export { startFileMode };

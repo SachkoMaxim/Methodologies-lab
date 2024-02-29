@@ -1,4 +1,5 @@
 import { validateInputFilePath, readMarkdownFile } from './validations.js';
+import { convertMarkdownToHTML } from './markdownConverter.js';
 
 const startConsoleMode = () => {
     const filePath = process.argv[2];
@@ -6,7 +7,9 @@ const startConsoleMode = () => {
     validateInputFilePath(filePath);
 
     const markdownText = readMarkdownFile(filePath);
-    console.log("Console mode is not implemented yet");
+
+    const consoleText = convertMarkdownToHTML(markdownText);
+    console.log(`${consoleText}`);
 }
 
 export { startConsoleMode };
