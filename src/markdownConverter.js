@@ -143,8 +143,15 @@ const mergeStringsWithCondition = (markdownText, condition) => {
   }
 
 const isNestedTag = (markdownText) => {
+  const nestedTestText = markdownText
+    .replace(/<b>/g, '**')
+    .replace(/<\/b>/g, '**')
+    .replace(/<i>/g, '_')
+    .replace(/<\/i>/g, '_')
+    .replace(/<tt>/g, '`')
+    .replace(/<\/tt>/g, '`');
   for (const regExp of regExpes) {
-    if (markdownText.match(regExp.regExp) != null) return true;
+    if (nestedTestText.match(regExp.regExp) != null) return true;
   }
   return false;
 };
@@ -167,7 +174,7 @@ const convertMarkdownToHTML = (markdownText) => {
       let mlength = match[0].length - symbolIndexStart;
       let preformatedText = markdownText.slice(midx + regExp.length, midx + mlength);
       const symbolIndexEnd = preformatedText.lastIndexOf(regExp.symbol);
-      const endIdx = midx + symbolIndexEnd
+      const endIdx = midx + symbolIndexEnd;
       preformatedText = preformatedText.slice(0, symbolIndexEnd);
       const formatedText = regExp.fn ? regExp.fn(preformatedText) : preformatedText;
       if (!regExp.nestedTag && isNestedTag(' ' + formatedText)) {
