@@ -1,3 +1,5 @@
+'use strict';
+
 import { validateInputFilePath, readMarkdownFile } from './validations.js';
 import { convertMarkdownToHTML } from './markdownConverter.js';
 

@@ -1,3 +1,5 @@
+'use strict';
+
 const regExpes = [
   {
     regExp: /([^A-Za-z0-9]|^)```([^A-Za-z0-9]|$)(.+?)([^A-Za-z0-9]|^)```([^A-Za-z0-9]|$)/s,
@@ -195,14 +197,14 @@ const convertMarkdownToHTML = (markdownText) => {
       preformatedText = preformatedText.slice(0, symbolIndexEnd);
       const formatedText = regExp.fn ? regExp.fn(preformatedText) : preformatedText;
       if (!regExp.nestedTag && isNestedTag(' ' + formatedText)) {
-        console.log(`\x1b[31mError:\x1b[0m Invalid Markdown nested tags.`);
+        console.error(`\x1b[31mError:\x1b[0m Invalid Markdown nested tags.`);
         process.exit(406);
       }
       markdownText = markdownText.slice(0, midx) + regExp.changeToStart + formatedText + regExp.changeToEnd + markdownText.slice(endIdx + regExp.length * 2); 
     }
   }
   if (isInvalidTags(markdownText)) {
-    console.log(`\x1b[31mError:\x1b[0m Invalid Markdown not finished tags.`);
+    console.error(`\x1b[31mError:\x1b[0m Invalid Markdown not finished tags.`);
     process.exit(406);
   }
   markdownText = deleteInternalSymbols(markdownText, '~!!!~');

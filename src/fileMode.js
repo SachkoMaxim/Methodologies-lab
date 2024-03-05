@@ -1,3 +1,5 @@
+'use strict';
+
 import { writeFileSync } from 'fs';
 import { validateInputFilePath, validateOutputFilePath, readMarkdownFile } from './validations.js';
 import { convertMarkdownToHTML } from './markdownConverter.js';
