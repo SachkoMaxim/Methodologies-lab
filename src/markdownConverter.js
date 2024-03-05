@@ -6,7 +6,10 @@ const regExpes = [
     changeToStart: '<pre>',
     changeToEnd: '</pre>',
     nestedTag: true,
-    fn: (markdownText) => markdownText.split(' ').map(word => '~a' + word).join(' ')
+    fn: (data) => {
+      preData.push(data);
+      return '~!!!~';
+    }
   },
   {
     regExp: /([^A-Za-z0-9]|^)\*\*(\S(?:.*?\S)?)\*\*([^A-Za-z0-9]|$)/u,
@@ -39,6 +42,8 @@ const regExpesError = [
   /(^|\s)_\w+/,
   /(^|\s)`\w+/
 ];
+
+const preData = [];
 
 const preformattedTextOpenedTag = '<pre>';
 const preformattedTextClosedTag = '</pre>';
@@ -82,11 +87,18 @@ const processParagraphs = (markdownText) => {
       return;
     }
 
-    if (i < strings.length - 1 && strings[i + 1].includes(preformattedTextOpenedTag)) {
+    const nextStringIsEmpty = i < strings.length - 1 && strings[i + 1].trim() === '';
+    const nextStringIsPreformatted = i < strings.length - 1 && strings[i + 1].includes(preformattedTextOpenedTag);
+
+    if (nextStringIsPreformatted) {
       if (isParagraphOpen && !isPreformatted) {
         result.push(paragraphClosedTag);
         isParagraphOpen = false;
       }
+    }
+
+    if (nextStringIsEmpty && !isPreformatted) {
+      return;
     }
 
     if (i > 0 && strings[i - 1].includes(preformattedTextClosedTag)) {
@@ -163,7 +175,12 @@ const isInvalidTags = (markdownText) => {
   return false;
 };
 
-const deleteInternalSymbols = (markdownText, symbols) => markdownText.replace(new RegExp(symbols, 'g'), '');
+const deleteInternalSymbols = (data, symbols) => {
+  for (const elem of preData) {
+    data = data.replace(symbols, elem);
+  }
+  return data;
+};
 
 const convertMarkdownToHTML = (markdownText) => {
   for (const regExp of regExpes) {
@@ -188,7 +205,7 @@ const convertMarkdownToHTML = (markdownText) => {
     console.log(`\x1b[31mError:\x1b[0m Invalid Markdown not finished tags.`);
     process.exit(406);
   }
-  markdownText = deleteInternalSymbols(markdownText, '~a');
+  markdownText = deleteInternalSymbols(markdownText, '~!!!~');
   markdownText = processParagraphs(markdownText);
   markdownText = mergeStringsWithCondition(markdownText, paragraphOpenedTag);
   markdownText = mergeStringsWithCondition(markdownText, paragraphClosedTag);
