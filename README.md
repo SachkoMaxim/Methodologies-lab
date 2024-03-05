@@ -44,9 +44,6 @@ After that, the converted text with HTML tags will be saved to a .html file you 
 
 There are five example files in the examples folder for you to comfortably test the program.
 
-**Demonstration of working program (please click here to see the video on YouTube):**
-[![Program demo](https://computerinfobits.com/wp-content/uploads/2022/02/Windows-Desktop.webp)](https://youtu.be/dQw4w9WgXcQ)
-
 ## Lab section
 
 ### Revert-commit link
