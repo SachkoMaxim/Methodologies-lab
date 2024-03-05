@@ -46,4 +46,4 @@ There are five example files in the examples folder for you to comfortably test 
 
 ## Lab section
 
-### Revert-commit link
+### [Revert-commit link](https://github.com/SachkoMaxim/Methodologies-lab/commit/82ad2daf845f972c959322574d2d71a33deef1d9)
