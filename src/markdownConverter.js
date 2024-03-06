@@ -214,4 +214,4 @@ const convertMarkdownToHTML = (markdownText) => {
   return markdownText;
 };
 
-export { convertMarkdownToHTML };
+module.exports = { convertMarkdownToHTML };
