@@ -1,21 +1,24 @@
 {
-    "name": "Methodologies-lab",
-    "version": "1.0.0",
-    "description": "",
-    "main": "main.js",
-    "type": "module",
-    "scripts": {
-        "test": "echo \"Error: no test specified for now\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/SachkoMaxim/Methodologies-lab.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/SachkoMaxim/Methodologies-lab/issues"
-    },
-    "homepage": "https://github.com/SachkoMaxim/Methodologies-lab#readme"
+  "name": "methodologies-lab",
+  "version": "1.0.0",
+  "description": "This program was created by Maksym Sachko, group IM-22, FICE, KPI. This is a simple text converter from Markdown text to HTML text. \r The program can convert some Markdown tags to HTML tags, such as bold, italic, monospaced, preformat, and paragraph tags. \r It can also detect invalid markup and find nested tags, save the output data to a .html file, or output that data to stdout.",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified for now\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SachkoMaxim/Methodologies-lab.git"
+  },
+  "keywords": [],
+  "author": "SachkoMaxim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SachkoMaxim/Methodologies-lab/issues"
+  },
+  "homepage": "https://github.com/SachkoMaxim/Methodologies-lab#readme",
+  "directories": {
+    "example": "examples"
+  }
 }
