@@ -42,7 +42,7 @@ To run the program in the file mode, you need to add **--out** and pass the outp
 
 After that, the converted text with HTML tags will be saved to a .html file you choosed as an output file (if there was no mistakes, of course).
 
-There are five example files in the examples folder for you to comfortably test the program.
+There are six example files in the examples folder for you to comfortably test the program.
 
 ## Lab section
 

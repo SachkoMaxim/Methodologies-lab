@@ -2,7 +2,7 @@
 
 const regExpes = [
   {
-    regExp: /([^A-Za-z0-9]|^)```([^A-Za-z0-9]|$)(.+?)([^A-Za-z0-9]|^)```([^A-Za-z0-9]|$)/s,
+    regExp: /([^A-Za-z0-9\u0400-\u04FF]|^)```([^A-Za-z0-9\u0400-\u04FF]|$)(.+?)([^A-Za-z0-9\u0400-\u04FF]|^)```([^A-Za-z0-9\u0400-\u04FF]|$)/s,
     length: 3,
     symbol: '```',
     changeToStart: '<pre>',
@@ -14,7 +14,7 @@ const regExpes = [
     }
   },
   {
-    regExp: /([^A-Za-z0-9]|^)\*\*(\S(?:.*?\S)?)\*\*([^A-Za-z0-9]|$)/u,
+    regExp: /([^A-Za-z0-9\u0400-\u04FF]|^)\*\*(\S(?:.*?\S)?)\*\*([^A-Za-z0-9\u0400-\u04FF]|$)/u,
     length: 2,
     symbol: '**',
     changeToStart: '<b>',
@@ -22,7 +22,7 @@ const regExpes = [
     nestedTag: false
   },
   {
-    regExp: /([^A-Za-z0-9]|^)_(\S(?:.*?\S)?)_([^A-Za-z0-9]|$)/u,
+    regExp: /([^A-Za-z0-9\u0400-\u04FF]|^)_(\S(?:.*?\S)?)_([^A-Za-z0-9\u0400-\u04FF]|$)/u,
     symbol: '_',
     length: 1,
     changeToStart: '<i>',
@@ -30,7 +30,7 @@ const regExpes = [
     nestedTag: false
   },
   {
-    regExp: /([^A-Za-z0-9]|^)`(\S(?:.*?\S)?)`([^A-Za-z0-9]|$)/u,
+    regExp: /([^A-Za-z0-9\u0400-\u04FF]|^)`(\S(?:.*?\S)?)`([^A-Za-z0-9\u0400-\u04FF]|$)/u,
     symbol: '`',
     length: 1,
     changeToStart: '<tt>',
@@ -40,9 +40,9 @@ const regExpes = [
 ];
 
 const regExpesError = [
-  /(^|\s)\*\*\w+/,
-  /(^|\s)_\w+/,
-  /(^|\s)`\w+/
+  /(^|\s)\*\*[\w\u0400-\u04FF]+/,
+  /(^|\s)_[\w\u0400-\u04FF]+/,
+  /(^|\s)`[\w\u0400-\u04FF]+/
 ];
 
 const preData = [];
